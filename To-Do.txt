@@ -1,0 +1,13 @@
+handle the case of two lines on each other 
+in function segment - segment and line - segment intersection 
+
+case of colinear that I did add to the upove functions 
+could be striked with coliinear but not intersected 
+
+
+handle verticle lines 
+
+check for the methods U CALL OF OTHER CLASSES AS IT WILL ADD THINS TO THE REF lists 
+
+
+add flag to alternate CCW and CW on the hull algorithms 
