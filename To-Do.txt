@@ -5,7 +5,7 @@ case of colinear that I did add to the upove functions
 could be striked with coliinear but not intersected 
 
 
-handle verticle lines 
+handle verticle and horizontle lines and segments in all type of intersections 
 
 check for the methods U CALL OF OTHER CLASSES AS IT WILL ADD THINS TO THE REF lists 
 
