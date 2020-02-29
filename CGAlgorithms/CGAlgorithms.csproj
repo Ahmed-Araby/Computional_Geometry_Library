@@ -47,8 +47,11 @@
     <Compile Include="Algorithms\ConvexHull\DivideAndConquer.cs" />
     <Compile Include="Algorithms\ConvexHull\Incremental.cs" />
     <Compile Include="Algorithms\ConvexHull\ExtremePoints.cs" />
+    <Compile Include="Algorithms\Line Line intersection.cs" />
+    <Compile Include="Algorithms\Line polygon intersection.cs" />
     <Compile Include="Algorithms\line_point_turn.cs" />
     <Compile Include="Algorithms\line_segment_intersection.cs" />
+    <Compile Include="Algorithms\Point in convex polygon.cs" />
     <Compile Include="Algorithms\point_inside_concave_polygon.cs" />
     <Compile Include="Algorithms\point_inside_triangle.cs" />
     <Compile Include="Algorithms\PolygonTriangulation\InsertingDiagonals.cs" />

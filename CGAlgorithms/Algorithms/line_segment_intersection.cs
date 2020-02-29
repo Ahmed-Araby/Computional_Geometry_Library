@@ -13,9 +13,12 @@ namespace CGAlgorithms.Algorithms
             /*
              * this function assume that the line is at index 0 
              * and the segment is at index 1 
-             **/
+             */
             Line l = lines[0];
             Line seg = lines[1];
+
+            if (parallel_line(l, seg))
+                return;
 
             // get point of intersection as if they are lines 
             double s1 = (l.Start.Y - l.End.Y) / (l.Start.X - l.End.X);
@@ -44,6 +47,36 @@ namespace CGAlgorithms.Algorithms
                     outPoints.Add(new Point(x , y));
             }
         }
+
+        public bool parallel_line(Line l1, Line l2)
+        {
+
+            string l1_type = "HV", l2_type = "HV";
+            if (l1.Start.X == l1.End.X)
+                l1_type = "V";
+            else if (l1.Start.Y == l1.End.Y)
+                l1_type = "H";
+
+            if (l2.Start.X == l2.End.X)
+                l2_type = "V";
+            else if (l2.Start.Y == l2.End.Y)
+                l2_type = "H";
+            if (l1_type == "HV" && l2_type == "HV")
+            {
+                double slope1 = (l1.Start.Y - l1.End.Y) - (l1.Start.X - l1.End.X);
+                double slope2 = (l2.Start.Y - l2.End.Y) - (l2.Start.X - l2.End.X);
+                /*
+                 *  we should do comparison using eps as we could have floating point 
+                 *  numbers for slopes 
+                 */
+                if (slope1 == slope2)
+                    return true;
+            }
+            if (l1_type == l2_type && l1_type != "HV")
+                return true;
+            return false;
+        }
+
         public override string ToString()
         {
             return "line - segment intersection ";
