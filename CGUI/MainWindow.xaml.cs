@@ -66,10 +66,7 @@ namespace CGUI
             this.resultCanvas.Reset();
             this.drawingCanvas.Focus();
 
-            /*
-             * [added by Ahmed Araby]
-             * return me to draw mode 
-             */
+            // get back to the draw mode
             this.algorithmList.SelectedIndex = 0;
         }
 

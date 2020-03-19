@@ -10,6 +10,12 @@ namespace CGAlgorithms.Algorithms
     {
         public override void Run(List<Point> points, List<Line> lines, List<Polygon> polygons, ref List<Point> outPoints, ref List<Line> outLines, ref List<Polygon> outPolygons)
         {
+            /*
+             *  [on purpose]
+             *  don't handle repeated points 
+             *  neither colinear points 
+             */
+
             if(polygons[0].lines.Count!=3)
             {// not a triangle 
                 return;
@@ -22,6 +28,8 @@ namespace CGAlgorithms.Algorithms
             Enums.TurnType t1 = HelperMethods.CheckTurn(l1, p);
             Enums.TurnType t2 = HelperMethods.CheckTurn(l2, p);
             Enums.TurnType t3 = HelperMethods.CheckTurn(l3, p);
+            // have to be inside the triangle not colinear with one of the edges 
+            // not repeated points 
             if (t1 == t2 && t2 == t3)
                 outPoints.Add(p);
             return;

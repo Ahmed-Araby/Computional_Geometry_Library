@@ -9,6 +9,18 @@ namespace CGAlgorithms.Algorithms.ConvexHull
 {
     public class JarvisMarch : Algorithm
     {
+        public int comp(Point a, Point b)
+        {
+            if (a.X == b.X)
+            {
+                if (a.Y < b.Y)
+                    return -1;
+                return 1;
+            }
+            else if (a.X < b.X)
+                return -1;
+            return 1;
+        }
         public override void Run(List<Point> points, List<Line> lines, List<Polygon> polygons, ref List<Point> outPoints, ref List<Line> outLines, ref List<Polygon> outPolygons)
         {
             /*
@@ -20,7 +32,24 @@ namespace CGAlgorithms.Algorithms.ConvexHull
              * angularly left most point respect to the current point on the hull we have 
              */
 
+            /*
+             * [explanation to colinear test case]
+             *  p1 - p2 - p3 (colinear points)
+             *  this situation will not happen when p2 is the current point 
+             *  as when p1 is the current point p3 will be the next point. 
+             *  and when p3 is the current point and p2 is ignored form the hull 
+             *  p3 it will never find a further colinear point with it and p1 
+             *  as p1 would find it before p3 in this case  
+             *  so always the farthest from me will be in CCW direction 
+             *  as Iam searching for point with most right angle with the current one each time 
+             */
+
             // extreme have to be on the polygon , it have <=180 with the axis passing straight throw it respect to all points.
+            if (points.Count == 0)
+                return;
+
+            points.Sort(comp); // to catch the case of many similar points 
+
             int minp_index = get_min_point_index(points); 
             Point current_p = points[minp_index];
             int currentp_index = minp_index;
@@ -31,7 +60,15 @@ namespace CGAlgorithms.Algorithms.ConvexHull
             {
                 // get initial next point 
                 int nextp_index = (currentp_index + 1) % points.Count;
+                while (compare_points(current_p, points[nextp_index]) && nextp_index != currentp_index)
+                    nextp_index = (nextp_index + 1) % points.Count;
+                if (nextp_index == currentp_index)
+                    break;
                 Point next_p = points[nextp_index];
+
+                /*
+                 * next point is candidate point on the hull boundary  
+                 */
 
                 // get initial extreme segment
                 Line extreme_seg = new Line(current_p, next_p);
@@ -72,6 +109,12 @@ namespace CGAlgorithms.Algorithms.ConvexHull
             }
             outPoints = hull;
             return;
+        }
+        public bool compare_points(Point a, Point b)
+        {
+            if (Math.Abs(a.X - b.X) <= Constants.Epsilon && Math.Abs(a.Y - b.Y) <= Constants.Epsilon)
+                return true;
+            return false;
         }
         public double get_dis2(Point a , Point b)
         { // distance is squared to avoid precision errors 

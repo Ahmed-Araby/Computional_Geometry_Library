@@ -37,101 +37,66 @@ namespace CGAlgorithmsUnitTest
             convexHullTester = new JarvisMarch();
             Case4();
         }
+        
         [TestMethod]
-        public void JarvisMarchTestCase5()
+        public void JarvisMarchNormalTestCase200Points()
         {
             convexHullTester = new JarvisMarch();
-            Case5();
+            Case200Points();
         }
         [TestMethod]
-        public void JarvisMarchTestCase6()
+        public void JarvisMarchNormalTestCase400Points()
         {
             convexHullTester = new JarvisMarch();
-            Case6();
+            Case400Points();
         }
         [TestMethod]
-        public void JarvisMarchTestCase7()
+        public void JarvisMarchNormalTestCase600Points()
         {
             convexHullTester = new JarvisMarch();
-            Case7();
+            Case600Points();
         }
         [TestMethod]
-        public void JarvisMarchTestCase8()
+        public void JarvisMarchNormalTestCase800Points()
         {
             convexHullTester = new JarvisMarch();
-            Case8();
+            Case800Points();
         }
         [TestMethod]
-        public void JarvisMarchTestCase9()
+        public void JarvisMarchNormalTestCase3000Points()
         {
             convexHullTester = new JarvisMarch();
-            Case9();
+            Case3000Points();
         }
         [TestMethod]
-        public void JarvisMarchTestCase10()
+        public void JarvisMarchNormalTestCase4000Points()
         {
             convexHullTester = new JarvisMarch();
-            Case10();
+            Case4000Points();
         }
         [TestMethod]
-        public void JarvisMarchTestCase11()
+        public void JarvisMarchNormalTestCase5000Points()
         {
             convexHullTester = new JarvisMarch();
-            Case11();
+            Case5000Points();
         }
         [TestMethod]
-        public void JarvisMarchTestCase12()
+        public void JarvisMarchNormalTestCase10000Points()
         {
             convexHullTester = new JarvisMarch();
-            Case12();
+            Case10000Points();
         }
         [TestMethod]
-        public void JarvisMarchTestCase13()
+        public void JarvisMarchSpecialCaseTriangle()
         {
             convexHullTester = new JarvisMarch();
-            Case13();
+            SpecialCaseTriangle();
         }
-		[TestMethod]
-		public void JarvisMarchTestCase14()
-		{
-			convexHullTester = new JarvisMarch();
-			Case14();
-		}
-		[TestMethod]
-		public void JarvisMarchTestCase15()
-		{
-			convexHullTester = new JarvisMarch();
-			Case15();
-		}
-		[TestMethod]
-		public void JarvisMarchTestCase16()
-		{
-			convexHullTester = new JarvisMarch();
-			Case16();
-		}
-		[TestMethod]
-		public void JarvisMarchTestCase17()
-		{
-			convexHullTester = new JarvisMarch();
-			Case17();
-		}
-		[TestMethod]
-		public void JarvisMarchTestCase18()
-		{
-			convexHullTester = new JarvisMarch();
-			Case18();
-		}
-		[TestMethod]
-		public void JarvisMarchTestCase19()
-		{
-			convexHullTester = new JarvisMarch();
-			Case19();
-		}
-		[TestMethod]
-		public void JarvisMarchTestCase20()
-		{
-			convexHullTester = new JarvisMarch();
-			Case20();
-		}
+        [TestMethod]
+        public void JarvisMarchSpecialCaseConvexPolygon()
+        {
+            convexHullTester = new JarvisMarch();
+            SpecialCaseConvexPolygon();
+        }
     }
 }

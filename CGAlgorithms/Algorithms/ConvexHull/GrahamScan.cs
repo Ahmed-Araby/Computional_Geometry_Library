@@ -10,6 +10,11 @@ namespace CGAlgorithms.Algorithms.ConvexHull
 {
     public class my_sort_algo: IComparer<Point>
     {
+        /*
+         * sort points respect to point a in angular manner  
+         * in ascending order 
+         */
+
         public Point a; // min point in the set of given points
         public my_sort_algo(Point p)
         {
@@ -65,7 +70,7 @@ namespace CGAlgorithms.Algorithms.ConvexHull
             /*
              * input : set of points 
              * return : segments , points in CCW manner 
-             *   check how the algo will behave for many colinear points 
+             * check how the algo will behave for many colinear points  !!!!!!
              */
 
             int minp_index = get_min_point_index(points);
@@ -83,10 +88,12 @@ namespace CGAlgorithms.Algorithms.ConvexHull
             // apply graham scan algo 
             List<Point> hull = new List<Point>();
             // ***********************
+            /*
+             * this introduce a bug , why !???
             if(minp!=sorted_points[0])
             {
                 return;
-            }
+            }*/
             // ***********************
 
             hull.Add(minp);
@@ -114,12 +121,19 @@ namespace CGAlgorithms.Algorithms.ConvexHull
                 else if(t==Enums.TurnType.Right)
                 {
                     // c enclose some points that are on the boundary of the hull 
+
                     hull.RemoveAt(hull.Count - 1);  // O(1)
-                    i -= 1; // don't go further untill we are making left turn 
+                    i -= 1;
+
+                    // don't go further untill we are making left turn 
                     // as hull could have more points that are enclosed by c
                 }
                 else // colinear , pick farthest 
-                { // only 2 points could be colinear with c
+                { 
+                    // only 2 points could be colinear with c
+                    // I don't think that we need to get the dis 
+                    // c is farther than b 
+
                     double bdis = get_dis2(a, b);
                     double cdis = get_dis2(a, c);
                     if(cdis > bdis)
@@ -130,8 +144,18 @@ namespace CGAlgorithms.Algorithms.ConvexHull
                 }
             }
 
+            
+            /*
+             * handle similar points  
+             */
+            if(hull.Count==2)
+            {
+                if (Math.Abs(hull[0].X - hull[1].X) <= Constants.Epsilon && Math.Abs(hull[0].Y - hull[1].Y) <= Constants.Epsilon)
+                    hull.RemoveAt(hull.Count - 1);
+            }
+
             // return 
-            for(int i=0; i<hull.Count; i++)
+            for (int i=0; i<hull.Count; i++)
             {
                 if (i>0)
                     outLines.Add(new Line(hull[i - 1], hull[i]));
@@ -151,17 +175,21 @@ namespace CGAlgorithms.Algorithms.ConvexHull
         {
             Point tmp_p = points[0];
             int index = 0;
+            /*
+             *  I did have a bug in the way that I pick min point on 
+             *  nope I guess any extreme vertex will do 
+             */
             for (int i = 0; i < points.Count; i++)
             {
-                if (points[i].Y == tmp_p.Y)
+                if (points[i].X == tmp_p.X)
                 {
-                    if (points[i].X < tmp_p.X)
+                    if (points[i].Y < tmp_p.Y)
                     {
                         tmp_p = points[i];
                         index = i;
                     }
                 }
-                else if (points[i].Y < tmp_p.Y)
+                else if (points[i].X < tmp_p.X)
                 {
                     tmp_p = points[i];
                     index = i;

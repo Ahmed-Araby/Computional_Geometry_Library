@@ -22,67 +22,103 @@ namespace CGAlgorithms.Algorithms.ConvexHull
             /*
              * this will affect outpoints and I will deal with it to make things alright  
              */
-            point_inside_triangle check_p_t = new point_inside_triangle();
 
-            // assume all points are extreme at the begining 
-            bool[] extreme_point = new bool[points.Count];
-            for (int i = 0; i < points.Count; i++)
-                extreme_point[i] = true;
-
-            // build the triangle 
+            // preprocessing 
+            List<Point> tmp = new List<Point>();
             for(int i=0; i<points.Count; i++)
             {
+                bool dup = false;
+                for(int j=0; j<i; j++)
+                {
+                    if(Math.Abs(points[i].X-points[j].X) <= Constants.Epsilon && Math.Abs(points[i].Y-points[j].Y) <=Constants.Epsilon)
+                    {
+                        dup = true;
+                        break;
+                    }
+                }
+                if (dup)
+                    continue;
+                tmp.Add(points[i]);
+            }
+            points.Clear();
+            points = tmp;
+
+            Point_in_convex_polygon check_p_in_t = new Point_in_convex_polygon();
+            bool[] is_extreme = new bool[points.Count];
+            for (int i = 0; i < points.Count; i++)
+                is_extreme[i] = true;
+
+            for(int i=0; i<points.Count; i++)
+            {
+                // don't use non extreme points in checking 
+                // as if we have the same point more than 1 time they will exclude each other 
+                if (is_extreme[i] == false)
+                    continue;
+
                 for(int j=0; j<points.Count; j++)
                 {
+                    if (is_extreme[j] == false)
+                        continue;
                     if (i == j)
                         continue;
-                    for(int k=0; k<points.Count; k++)
+
+                    for (int k=0; k<points.Count; k++)
                     {
+                        if (is_extreme[k] == false)
+                            continue;
                         if (k == i || k == j)
                             continue;
                         Point a = points[i], b = points[j], c = points[k];
-                        // loop throw candidate points 
-                        for(int index = 0; index<points.Count; index++)
+
+                        // check if points are colinear 
+                        Enums.TurnType t = HelperMethods.CheckTurn(new Line(a, b), c);
+                        if (t == Enums.TurnType.Colinear)
+                            continue;
+
+                        // loop throw the points 
+                        for(int index=0; index<points.Count; index++)
                         {
-                            if (index == i || index == j || index == k || extreme_point[index]==false)
+                            if (is_extreme[index] == false || index==i || index == j || index==k)
                                 continue;
+                            // check if the point is inside the polygon triangle 
+                            List<Line> tmp_ll = new List<Line>();
+                            List<Polygon> tmp_pl = new List<Polygon>();
+                            Polygon tmp_poly = new Polygon();
                             Point p = points[index];
 
-                            // check if point is inside the triangle 
-                            // point 
-                            List<Point> tmp_pl = new List<Point>();
-                            tmp_pl.Add(p);
-                            // triangle  (polygon)
-                            // segments are clock wise 
-                            List<Line> tmp_tl = new List<Line>();
-                            Polygon tmp_poly = new Polygon();
-                            
-                            tmp_tl.Add(new Line(a, b));
-                            tmp_tl.Add(new Line(b, c));
-                            tmp_tl.Add(new Line(c, a));
+                            // does the order matters !???
+                            tmp_ll.Add(new Line(a, b));
+                            tmp_ll.Add(new Line(b, c));
+                            tmp_ll.Add(new Line(c, a));
 
-                            tmp_poly.lines = tmp_tl;
-                            polygons.Add(tmp_poly);
+                            tmp_poly.lines = tmp_ll;
+                            tmp_pl.Add(tmp_poly);
 
-                            // check 
-                            check_p_t.Run(tmp_pl, lines, polygons, ref outPoints, ref outLines, ref outPolygons);
-                            if(outPoints.Count!=0)
+                            // tmp out lists 
+                            // does C# have garbage collector !??
+                            List<Point> tmp_outpoints = new List<Point>();
+                            List<Line> tmp_outlines = new List<Line>();
+                            List<Polygon> tmp_outpolygons = new List<Polygon>();
+                            List<Point> in_points = new List<Point>();
+                            in_points.Add(p);
+                            check_p_in_t.Run(in_points, new List<Line>(), tmp_pl, ref tmp_outpoints, ref tmp_outlines, ref tmp_outpolygons);
+                            if(tmp_outpoints.Count!=0)
                             {
-                                // non extreme point 
-                                extreme_point[index] = false;
-                                outPoints.Clear();
+                                is_extreme[index] = false;   
                             }
-
-                            polygons.Clear();
                         }
                     }
                 }
             }
 
-            // add extreme points to outpoints 
+            // return extreme points 
             for (int i = 0; i < points.Count; i++)
-                if (extreme_point[i] == true)
+            {
+                if (is_extreme[i] == true)
+                {
                     outPoints.Add(points[i]);
+                }
+            }
             return;
         }
 

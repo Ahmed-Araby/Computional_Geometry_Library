@@ -37,24 +37,7 @@ namespace CGAlgorithmsUnitTest
             convexHullTester = new DivideAndConquer();
             Case4();
         }
-        [TestMethod]
-        public void DivideAndConquerTestCase5()
-        {
-            convexHullTester = new DivideAndConquer();
-            Case5();
-        }
-        [TestMethod]
-        public void DivideAndConquerTestCase6()
-        {
-            convexHullTester = new DivideAndConquer();
-            Case6();
-        }
-        [TestMethod]
-        public void DivideAndConquerTestCase7()
-        {
-            convexHullTester = new DivideAndConquer();
-            Case7();
-        }
+        
         [TestMethod]
         public void DivideAndConquerTestCase8()
         {
@@ -73,65 +56,56 @@ namespace CGAlgorithmsUnitTest
             convexHullTester = new DivideAndConquer();
             Case10();
         }
+
         [TestMethod]
-        public void DivideAndConquerTestCase11()
+        public void DivideAndConquerSpecialCaseConvexPolygon()
         {
             convexHullTester = new DivideAndConquer();
-            Case11();
+            SpecialCaseConvexPolygon();
         }
         [TestMethod]
-        public void DivideAndConquerTestCase12()
+        public void DivideAndConquerSpecialCaseTriangle()
         {
             convexHullTester = new DivideAndConquer();
-            Case12();
+            SpecialCaseTriangle();
+        }
+
+        [TestMethod]
+        public void DivideAndConquerNormalTestCase1000Points()
+        {
+            convexHullTester = new DivideAndConquer();
+            Case1000Points();
         }
         [TestMethod]
-        public void DivideAndConquerTestCase13()
+        public void DivideAndConquerNormalTestCase2000Points()
         {
             convexHullTester = new DivideAndConquer();
-            Case13();
+            Case2000Points();
         }
-		[TestMethod]
-		public void DivideAndConquerTestCase14()
-		{
-			convexHullTester = new DivideAndConquer();
-			Case14();
-		}
-		[TestMethod]
-		public void DivideAndConquerTestCase15()
-		{
-			convexHullTester = new DivideAndConquer();
-			Case15();
-		}
-		[TestMethod]
-		public void DivideAndConquerTestCase16()
-		{
-			convexHullTester = new DivideAndConquer();
-			Case16();
-		}
-		[TestMethod]
-		public void DivideAndConquerTestCase17()
-		{
-			convexHullTester = new DivideAndConquer();
-			Case17();
-		}
-		[TestMethod]
-		public void DivideAndConquerTestCase18()
-		{
-			convexHullTester = new DivideAndConquer();
-			Case18();
-		}
-		[TestMethod]
-		public void DivideAndConquerTestCase19()
-		{
-			convexHullTester = new DivideAndConquer();
-			Case19();
-		}
-		[TestMethod]
-		public void DivideAndConquerTestCase20()
-		{
-			convexHullTester = new DivideAndConquer();
-			Case20();
-		}
+        [TestMethod]
+        public void DivideAndConquerNormalTestCase3000Points()
+        {
+            convexHullTester = new DivideAndConquer();
+            Case3000Points();
+        }
+        [TestMethod]
+        public void DivideAndConquerNormalTestCase4000Points()
+        {
+            convexHullTester = new DivideAndConquer();
+            Case4000Points();
+        }
+        [TestMethod]
+        public void DivideAndConquerNormalTestCase5000Points()
+        {
+            convexHullTester = new DivideAndConquer();
+            Case5000Points();
+        }
+        [TestMethod]
+        public void DivideAndConquerNormalTestCase10000Points()
+        {
+            convexHullTester = new DivideAndConquer();
+            Case10000Points();
+        }
+
     }
 }

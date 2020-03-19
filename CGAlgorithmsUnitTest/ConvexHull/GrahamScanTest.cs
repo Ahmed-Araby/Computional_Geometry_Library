@@ -37,24 +37,7 @@ namespace CGAlgorithmsUnitTest
             convexHullTester = new GrahamScan();
             Case4();
         }
-        [TestMethod]
-        public void GrahamScanTestCase5()
-        {
-            convexHullTester = new GrahamScan();
-            Case5();
-        }
-        [TestMethod]
-        public void GrahamScanTestCase6()
-        {
-            convexHullTester = new GrahamScan();
-            Case6();
-        }
-        [TestMethod]
-        public void GrahamScanTestCase7()
-        {
-            convexHullTester = new GrahamScan();
-            Case7();
-        }
+        
         [TestMethod]
         public void GrahamScanTestCase8()
         {
@@ -74,64 +57,52 @@ namespace CGAlgorithmsUnitTest
             Case10();
         }
         [TestMethod]
-        public void GrahamScanTestCase11()
+        public void GrahamScanNormalTestCase1000Points()
         {
             convexHullTester = new GrahamScan();
-            Case11();
+            Case1000Points();
         }
         [TestMethod]
-        public void GrahamScanTestCase12()
+        public void GrahamScanNormalTestCase2000Points()
         {
             convexHullTester = new GrahamScan();
-            Case12();
+            Case2000Points();
         }
         [TestMethod]
-        public void GrahamScanTestCase13()
+        public void GrahamScanNormalTestCase3000Points()
         {
             convexHullTester = new GrahamScan();
-            Case13();
+            Case3000Points();
         }
-		[TestMethod]
-		public void GrahamScanTestCase14()
-		{
-			convexHullTester = new GrahamScan();
-			Case14();
-		}
-		[TestMethod]
-		public void GrahamScanTestCase15()
-		{
-			convexHullTester = new GrahamScan();
-			Case15();
-		}
-		[TestMethod]
-		public void GrahamScanTestCase16()
-		{
-			convexHullTester = new GrahamScan();
-			Case16();
-		}
-		[TestMethod]
-		public void GrahamScanTestCase17()
-		{
-			convexHullTester = new GrahamScan();
-			Case17();
-		}
-		[TestMethod]
-		public void GrahamScanTestCase18()
-		{
-			convexHullTester = new GrahamScan();
-			Case18();
-		}
-		[TestMethod]
-		public void GrahamScanTestCase19()
-		{
-			convexHullTester = new GrahamScan();
-			Case19();
-		}
-		[TestMethod]
-		public void GrahamScanTestCase20()
-		{
-			convexHullTester = new GrahamScan();
-			Case20();
-		}
+        [TestMethod]
+        public void GrahamScanNormalTestCase4000Points()
+        {
+            convexHullTester = new GrahamScan();
+            Case4000Points();
+        }
+        [TestMethod]
+        public void GrahamScanNormalTestCase5000Points()
+        {
+            convexHullTester = new GrahamScan();
+            Case5000Points();
+        }
+        [TestMethod]
+        public void GrahamScanNormalTestCase10000Points()
+        {
+            convexHullTester = new GrahamScan();
+            Case10000Points();
+        }
+        [TestMethod]
+        public void GrahamScanSpecialCaseTriangle()
+        {
+            convexHullTester = new GrahamScan();
+            SpecialCaseTriangle();
+        }
+        [TestMethod]
+        public void GrahamScanSpecialCaseConvexPolygon()
+        {
+            convexHullTester = new GrahamScan();
+            SpecialCaseConvexPolygon();
+        }
     }
 }
