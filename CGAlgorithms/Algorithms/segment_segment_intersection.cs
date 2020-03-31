@@ -10,6 +10,9 @@ namespace CGAlgorithms.Algorithms
     {
         public override void Run(List<Point> points, List<Line> lines, List<Polygon> polygons, ref List<Point> outPoints, ref List<Line> outLines, ref List<Polygon> outPolygons)
         {
+            /*
+             *   how to handle buggy cases with H and V lines !??
+             */
             Line l1 = lines[0];
             Line l2 = lines[1];
 
@@ -24,7 +27,13 @@ namespace CGAlgorithms.Algorithms
 
             // point of intersection (treating segments as lines)
             double y = (s2 * b1 - s1 * b2) / (s2 - s1);
-            double x = (y - b1) / s1;
+
+            double x = 0;
+            if (s1 != 0)
+                x = (y - b1) / s1;  //  BUG it divides by zero and the test cases have Horizontal line and this give x =nan as inter point which
+            // can't be drawn on the canves 
+            else
+                x = (y - b2) / s2;
 
             // check if the point is inside th segments 
             /*
@@ -66,7 +75,7 @@ namespace CGAlgorithms.Algorithms
                  *  we should do comparison using eps as we could have floating point 
                  *  numbers for slopes 
                  */
-                if (slope1 == slope2)
+                if (Math.Abs(slope1 - slope2) <=Constants.Epsilon) // edited swap line 
                     return true;
             }
             if (l1_type == l2_type && l1_type != "HV")

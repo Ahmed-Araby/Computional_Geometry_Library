@@ -40,7 +40,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="DataStructures\Algorithms.cs" />
+    <Compile Include="DataStructures\Bag.cs" />
+    <Compile Include="DataStructures\BigList.cs" />
+    <Compile Include="DataStructures\CollectionBase.cs" />
+    <Compile Include="DataStructures\Comparers.cs" />
+    <Compile Include="DataStructures\Deque.cs" />
+    <Compile Include="DataStructures\DictionaryBase.cs" />
+    <Compile Include="DataStructures\Hash.cs" />
+    <Compile Include="DataStructures\ListBase.cs" />
+    <Compile Include="DataStructures\MultiDictionary.cs" />
+    <Compile Include="DataStructures\MultiDictionaryBase.cs" />
+    <Compile Include="DataStructures\OrderedBag.cs" />
+    <Compile Include="DataStructures\OrderedDictionary.cs" />
+    <Compile Include="DataStructures\OrderedMultiDictionary.cs" />
+    <Compile Include="DataStructures\OrderedSet.cs" />
+    <Compile Include="DataStructures\Pair.cs" />
+    <Compile Include="DataStructures\ReadOnlyCollectionBase.cs" />
+    <Compile Include="DataStructures\ReadOnlyDictionaryBase.cs" />
+    <Compile Include="DataStructures\ReadOnlyListBase.cs" />
+    <Compile Include="DataStructures\ReadOnlyMultiDictionaryBase.cs" />
+    <Compile Include="DataStructures\RedBlack.cs" />
+    <Compile Include="DataStructures\Set.cs" />
+    <Compile Include="DataStructures\Strings.cs" />
+    <Compile Include="DataStructures\Triple.cs" />
+    <Compile Include="DataStructures\Util.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="HelperMethods.cs" />
     <Compile Include="Line.cs" />
